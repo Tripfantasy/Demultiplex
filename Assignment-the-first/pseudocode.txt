@@ -73,6 +73,10 @@ Index = 8bp.
         if seq = rev comp, then = match. (Simplified)
         else:
             output to unmatched (forward, reverse)
+     Also:
+        if qual average for the score is below cutoff- send to mismatch?
+        convert(phred) used:
+        exp output: qual score per char in qual score line. Sum and average, then pass to conditional. 
     
 
 
