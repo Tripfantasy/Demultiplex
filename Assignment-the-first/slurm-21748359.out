@@ -1,0 +1,29 @@
+All qscores list:
+[1.12522212e+10 1.13940068e+10 1.28174820e+10 1.30327688e+10
+ 1.30688261e+10 1.42921210e+10 1.42018611e+10 1.41550375e+10]
+Mean list:
+[30.97679919 31.36712788 35.28588359 35.87855724 35.97782136 39.34549066
+ 39.09700977 38.96810668]
+	Command being timed: "./dist.py -f /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz -r 363246735 -l 8"
+	User time (seconds): 1691.55
+	System time (seconds): 0.51
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 28:17.80
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 57524
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 42244
+	Voluntary context switches: 2266
+	Involuntary context switches: 303982
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

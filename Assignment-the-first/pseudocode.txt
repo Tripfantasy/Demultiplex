@@ -1,0 +1,83 @@
+The problem:
+Multiplex sequencing enables high-throughput data, and is common practice in next gen sequencing. 
+However, when creating many copies of a read fragment in parallel, index hopping can occur. 
+Index hopping occurs when free floating indexes bind to undesired fragments on a parallel flow-cell. 
+This is problematic, as the index portion of the read is intended to be a *unique* identifier. 
+
+The goal: 
+Create an algorithm to de-multiplex FASTQ data by identifying index-hopped misassignments. 
+
+Output:
+FASTQ files which contain demultiplexed reads. Separate files for each sample based on unique barcodes. 
+File for mismatched, and unknowns. 
+
+Pseudocode: 
+    1. Understanding scenarios:
+        a: dual-matched:
+            dual indexed pairs. R1:R2 
+            Expected: 2 occurences per unique dual-index. 
+            (Forward, Reverse: 5'3' 3'5 'reverse complement')
+        b: index-hopped:
+            non-pair read sequence with adapter. Barcode on wrong sample. (Order?)
+        c: Unknown
+            "N"s? or ones that aren't in the list of known. 
+
+Known indexes:
+B1	GTAGCGTA    A5	CGATCGAT    C1	GATCAAGG
+B9	AACAGCGA    C9	TAGCCATG    C3	CGGTAATC
+B3	CTCTGGAT    C4	TACCGGAT    A11	CTAGCTCA
+C7	CACTTCAC    B2	GCTACTCT    A1	ACGATCAG
+B7	TATGGCAC    A3	TGTTCCGT    B4	GTCCTAAG
+A12	TCGACAAG    C10	TCTTCGAC    A2	ATCATGCG
+C2	ATCGTGGT    A10	TCGAGAGT    B8	TCGGATTC
+A7	GATCTTGC    B10	AGAGTCCA    A8	AGGATAGC
+
+Files: 
+1294_S1_L008_R1_001.fastq.gz | BIO
+1294_S1_L008_R2_001.fastq.gz | INDEX
+1294_S1_L008_R3_001.fastq.gz | INDEX
+1294_S1_L008_R4_001.fastq.gz | BIO
+
+1. There are 24 true indexes. First, check index files to count the occurences of each index. 
+Index = 8bp. 
+    Add true indexes to a set. 
+    loop through index 
+        if seq line  is in [index set]:
+            add occurence to index tally. 
+            write sequence to index tally
+        else:
+            write seq to "unknown file" 
+            unknown tally += 1 
+2. Files are paired reads, therefore R1 is forward, and R4 is reverse complement.
+    Indexes for these will be reverse complement if they match. 
+    Wrote Revcomp.py. 
+        Pseudocode:
+         Reverse:
+            take the given sequence and reverse it (-1)
+        Complement:
+            define matched bp: [A:T, T:A, C:G, G:C,]
+            given a base, apply reverse to it to get the corresponding complement.
+        For line in file: 
+            point to seq line:
+                reverse order of characters in line
+                convert characters to complementary base.
+        Function: reversecomp(dna)
+            input: AACG
+            expected output: CGTT
+3. Parse and divide based on match.
+    Given:
+    list of barcodes: 
+        if seq barcode is found in known barcodes (array?):
+            output to barcode file (forward, reverse)
+        For revewrse: 
+        if seq = rev comp, then = match. (Simplified)
+        else:
+            output to unmatched (forward, reverse)
+    
+
+
+
+
+        
+
+

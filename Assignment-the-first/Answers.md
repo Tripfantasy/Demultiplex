@@ -17,7 +17,15 @@
 ![image](https://user-images.githubusercontent.com/106117735/181919689-d0b1933c-75cd-461c-957f-f534c5c39083.png)
 ![image](https://user-images.githubusercontent.com/106117735/181919701-a998caba-f884-4630-885f-bbb8ae79d96e.png)
 
-    
+3. Good quality score cutoff? 
+Index files, 32. 
+Bio files, 35. Determined by distribution, mostly uniform above the threshold. 
+4. Command to count indexes with N character in one line. 
+
+```zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz| awk 'NR % 2==0'| grep -c "N"``` 
+Returned: 3976613 indexes with "N"
+
+
 ## Part 2
 1. Define the problem
 2. Describe output

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/gpfs/projects/bgmp/dmarro/bioinfo/Bi622/Demultiplex/Assignment-the-first/./dist.py", line 43, in <module>
+    mean[index] = all_qscores_sum[index] / args.reads
+IndexError: index 101 is out of bounds for axis 0 with size 101
