@@ -23,7 +23,9 @@ Bio files, 35. Determined by distribution, mostly uniform above the threshold.
 4. Command to count indexes with N character in one line. 
 
 ```zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz| awk 'NR % 2==0'| grep -c "N"``` 
-Returned: 3976613 indexes with "N"
+
+```zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz| awk 'NR % 2==0'| grep -c "N"```
+Returned: 3976613 + 3328051 indexes with "N" = 7304664
 
 
 ## Part 2
